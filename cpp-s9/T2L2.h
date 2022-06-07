@@ -5,7 +5,7 @@
 #include <numeric>
 #include <vector>
 
-//#include "json.h"
+#include "json.h"
 #include "xml.h"
 
 using namespace std;
@@ -30,7 +30,8 @@ string FindMostExpensiveCategory(const vector<Spending>& spendings) {
     return max_element(begin(spendings), end(spendings), compare_by_amount)->category;
 }
 
-/*vector<Spending> LoadFromJson(istream& input) {
+vector<Spending> LoadFromJson(istream& input) {
+    using namespace json;
     vector<Spending> result;
     Document document = Load(input);
     Node node = document.GetRoot();
@@ -49,9 +50,10 @@ string FindMostExpensiveCategory(const vector<Spending>& spendings) {
         }
     }
     return result;
-}*/
+}
 
 vector<Spending> LoadFromXml(istream& input) {
+    using namespace xml;
     vector<Spending> result;
     Document document = Load(input);
     Node node = document.GetRoot();
